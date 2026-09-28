@@ -32,6 +32,20 @@ Ask these questions together, in one message. Use a multiple-choice question too
 
 Save the answers to `.claude/help-center-setup.md` (write "unknown" rather than guessing), so the next run skips the questions. This file names internal paths and accounts, so keep it out of the published docs folder.
 
+### Check that you can reach the browser
+
+Screenshots and the live-UI check both need Claude in Chrome, so confirm it works before planning around it. Every run, not just the first: the extension can disconnect between sessions.
+
+1. Look for the browser tools (their names start with `mcp__claude-in-chrome__`; load them first if they're deferred). Call the tab-context tool once.
+2. If the tools are missing or the call fails, stop and ask the founder to set it up, with these steps:
+   - Install the **Claude in Chrome** extension from the Chrome Web Store (search "Claude in Chrome"), in Chrome, Edge, Brave or another Chromium browser. It needs a paid Claude plan (Pro, Max, Team or Enterprise).
+   - Sign in to the extension with the same Claude account as Claude Code. Claude Code must be signed in with `/login`; an API key won't work.
+   - Restart Claude Code with `claude --chrome`, or run `/chrome` in this session to connect. If it was connected before and stopped responding, running `/chrome` again usually reconnects it.
+   - In that browser, sign in to the product with the account to use for screenshots. Do this yourself; Claude never types passwords.
+   - Keep the browser window open and visible while Claude takes screenshots.
+   - On Windows, run Claude Code natively, not inside WSL. The Chrome connection isn't supported from WSL.
+3. Wait for the founder to confirm, then check again. If they'd rather not install it, carry on without it. Write the pages from the code, and in the handoff list every screenshot to take (page, screen state, what to highlight, file name). Mark each page's steps as "not yet checked in the live product".
+
 ## Establish the rest of the setup
 
 With the founder's answers in hand, fill in the details from the repo. Ask only about what you still can't find.
@@ -176,6 +190,7 @@ Follow these writing rules:
 - **Claude Code:** start Claude Code with `claude --chrome`, or run `/chrome` inside a session.
 - **Requirements:** a paid Claude plan and a Chromium browser (Chrome, Edge, Brave and others).
 - **Claude app:** it also works from claude.ai and the desktop app.
+- **Not connected?** If the browser tools stop responding partway through, go back to "Check that you can reach the browser" in Step 0 and ask the founder to reconnect. Don't keep retrying.
 
 Take screenshots one at a time from the main agent. There's one browser, and parallel agents clicking in it collide.
 
